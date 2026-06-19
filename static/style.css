@@ -1,0 +1,649 @@
+/* =========================================================
+   Design Tokens
+   ========================================================= */
+:root {
+  --bg:            #07090f;
+  --surface:       #0e1117;
+  --surface-2:     #141820;
+  --surface-3:     #1c2230;
+  --border:        rgba(255,255,255,0.07);
+  --border-hover:  rgba(66,133,244,0.45);
+
+  --blue:          #4285f4;
+  --blue-light:    #669df6;
+  --blue-dark:     #1a73e8;
+  --blue-glow:     rgba(66,133,244,0.18);
+
+  --tweet:         #1d9bf0;
+  --tweet-hover:   #1a8cd8;
+
+  --text-primary:  #e8eaed;
+  --text-secondary:#9aa0ac;
+  --text-muted:    #5f6368;
+
+  --success:       #34a853;
+  --error:         #ea4335;
+  --warning:       #fbbc04;
+
+  --radius-sm:     8px;
+  --radius-md:     14px;
+  --radius-lg:     20px;
+  --radius-xl:     28px;
+
+  --shadow-card:   0 1px 3px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
+  --shadow-card-hover: 0 2px 6px rgba(0,0,0,0.6), 0 8px 28px rgba(66,133,244,0.12);
+  --shadow-modal:  0 24px 64px rgba(0,0,0,0.8);
+
+  --transition:    0.22s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* =========================================================
+   Reset & Base
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   Animated Background Orbs
+   ========================================================= */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 20s ease-in-out infinite alternate;
+}
+.orb-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(26,115,232,0.12) 0%, transparent 70%);
+  top: -200px; left: -200px;
+  animation-duration: 22s;
+}
+.orb-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(66,133,244,0.08) 0%, transparent 70%);
+  top: 40%; right: -150px;
+  animation-duration: 18s; animation-delay: -8s;
+}
+.orb-3 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(52,168,83,0.06) 0%, transparent 70%);
+  bottom: -100px; left: 30%;
+  animation-duration: 25s; animation-delay: -5s;
+}
+@keyframes orbFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(40px, 30px) scale(1.08); }
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7,9,15,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  gap: 16px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bq-icon {
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 12px rgba(66,133,244,0.5));
+  transition: filter var(--transition);
+}
+.bq-icon:hover { filter: drop-shadow(0 0 20px rgba(66,133,244,0.75)); }
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  background: linear-gradient(135deg, #e8eaed 0%, var(--blue-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.entry-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+.btn:active { transform: scale(0.96); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(66,133,244,0.25);
+}
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1557b0 0%, var(--blue-dark) 100%);
+  box-shadow: 0 4px 16px rgba(66,133,244,0.4);
+}
+
+.btn-tweet {
+  background: var(--tweet);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(29,155,240,0.3);
+}
+.btn-tweet:hover:not(:disabled) {
+  background: var(--tweet-hover);
+  box-shadow: 0 4px 16px rgba(29,155,240,0.45);
+}
+
+.btn-ghost {
+  background: var(--surface-3);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Spinner */
+.spin-icon {
+  transition: opacity var(--transition);
+}
+.spinning .spin-icon {
+  animation: spin 0.75s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   Tweet Bar
+   ========================================================= */
+.tweet-bar {
+  position: sticky;
+  top: 73px;
+  z-index: 90;
+  background: rgba(29,155,240,0.1);
+  border-bottom: 1px solid rgba(29,155,240,0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 10px 24px;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+  pointer-events: none;
+}
+.tweet-bar.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tweet-bar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tweet-bar-count {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--tweet);
+}
+
+.tweet-bar-actions { display: flex; gap: 10px; align-items: center; }
+
+/* =========================================================
+   Error Banner
+   ========================================================= */
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(234,67,53,0.1);
+  border: 1px solid rgba(234,67,53,0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin: 24px auto;
+  max-width: 1280px;
+  color: #f28b82;
+  font-size: 0.9rem;
+}
+.error-icon { width: 20px; height: 20px; flex-shrink: 0; }
+
+/* =========================================================
+   Main Layout
+   ========================================================= */
+main {
+  position: relative;
+  z-index: 1;
+  padding: 28px 24px 60px;
+}
+
+.entries-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 18px;
+}
+
+/* =========================================================
+   Skeleton Cards
+   ========================================================= */
+.skeleton-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+.skeleton-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+/* =========================================================
+   Entry Cards
+   ========================================================= */
+.entry-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  cursor: default;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition),
+    background var(--transition);
+  box-shadow: var(--shadow-card);
+  animation: cardIn 0.4s cubic-bezier(0.4,0,0.2,1) both;
+  position: relative;
+  overflow: hidden;
+}
+.entry-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue-dark), var(--blue-light));
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.entry-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+.entry-card:hover::before { opacity: 1; }
+
+.entry-card.selected {
+  border-color: rgba(29,155,240,0.6);
+  background: rgba(29,155,240,0.05);
+  box-shadow: 0 0 0 2px rgba(29,155,240,0.18), var(--shadow-card);
+}
+.entry-card.selected::before {
+  background: linear-gradient(90deg, var(--tweet), #60b3f7);
+  opacity: 1;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Card header row */
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.card-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-2);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+  position: relative;
+}
+.card-checkbox:hover {
+  border-color: var(--tweet);
+}
+.card-checkbox:checked {
+  background: var(--tweet);
+  border-color: var(--tweet);
+  box-shadow: 0 0 0 3px rgba(29,155,240,0.2);
+}
+.card-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 6px;
+  width: 5px; height: 9px;
+  border: 2px solid #fff;
+  border-top: none; border-left: none;
+  transform: rotate(45deg);
+}
+.card-checkbox:focus-visible {
+  outline: 2px solid var(--tweet);
+  outline-offset: 2px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.45;
+  flex: 1;
+}
+
+/* Date badge */
+.card-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.73rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--surface-3);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+/* Body text */
+.card-body {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  flex: 1;
+  /* allow rendered HTML but clip at max height */
+  max-height: 120px;
+  overflow: hidden;
+  position: relative;
+}
+.card-body::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40px;
+  background: linear-gradient(transparent, var(--surface));
+  pointer-events: none;
+  transition: background var(--transition);
+}
+.entry-card.selected .card-body::after {
+  background: linear-gradient(transparent, rgba(13,27,42,0.95));
+}
+.card-body a { color: var(--blue-light); }
+.card-body code {
+  background: var(--surface-3);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.82em;
+}
+
+/* Card footer */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.card-link {
+  font-size: 0.8rem;
+  color: var(--blue-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.card-link:hover { color: #fff; }
+
+.card-tweet-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.card-tweet-btn:hover {
+  color: var(--tweet);
+  border-color: rgba(29,155,240,0.4);
+  background: rgba(29,155,240,0.08);
+}
+.card-tweet-btn svg { width: 13px; height: 13px; }
+
+/* =========================================================
+   Tweet Modal
+   ========================================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+.modal-overlay[hidden] { display: none; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal {
+  background: var(--surface-2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 540px;
+  box-shadow: var(--shadow-modal);
+  animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.modal-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.modal-header h2 svg { width: 18px; height: 18px; fill: var(--tweet); }
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
+  font-family: inherit;
+}
+.modal-close:hover { background: var(--surface-3); color: var(--text-primary); }
+
+.modal-body { padding: 20px 24px 16px; }
+
+#tweetText {
+  width: 100%;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.925rem;
+  line-height: 1.6;
+  padding: 14px;
+  resize: vertical;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+#tweetText:focus {
+  outline: none;
+  border-color: var(--tweet);
+  box-shadow: 0 0 0 3px rgba(29,155,240,0.15);
+}
+
+.char-counter {
+  text-align: right;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+  transition: color var(--transition);
+}
+.char-counter.warn { color: var(--warning); }
+.char-counter.danger { color: var(--error); }
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 24px 22px;
+}
+
+/* =========================================================
+   Empty State
+   ========================================================= */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--text-muted);
+}
+.empty-state svg {
+  width: 56px; height: 56px;
+  opacity: 0.3;
+  margin-bottom: 16px;
+}
+.empty-state p { font-size: 1rem; }
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 640px) {
+  .entries-grid { grid-template-columns: 1fr; }
+  header h1 { font-size: 1rem; }
+  .header-sub { display: none; }
+  .entry-count { display: none; }
+  .tweet-bar-count { font-size: 0.78rem; }
+}

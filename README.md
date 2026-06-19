@@ -25,7 +25,7 @@
 #####       • Select multiple cards and click Tweet selected in the bar
 #####       • A compose modal pre-fills the tweet text (editable, with a live 280-char counter) and opens Twitter Web Intent — no API keys needed  
 
-#### Quickstart
+### Quickstart
 
 1. **Clone the repository** (if you haven't already):
    ```bash

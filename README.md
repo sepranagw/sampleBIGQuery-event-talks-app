@@ -24,3 +24,26 @@
 #####       • Click the Tweet button on any individual card
 #####       • Select multiple cards and click Tweet selected in the bar
 #####       • A compose modal pre-fills the tweet text (editable, with a live 280-char counter) and opens Twitter Web Intent — no API keys needed  
+
+#### Quickstart
+
+1. **Clone the repository** (if you haven't already):
+   ```bash
+   git clone https://github.com/sepranagw/sampleBIGQuery-event-talks-app.git
+   cd sampleBIGQuery-event-talks-app
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Start the Flask development server:**
+   ```bash
+   python app.py
+   ```
+
+4. **Open the app in your browser:**
+   ```
+   http://127.0.0.1:5000
+   ```

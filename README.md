@@ -21,6 +21,6 @@
 ####   • 📋 Release note cards — each shows title, date badge, summary excerpt, and a direct link to Google Cloud docs
 ####   • ☑️ Multi-select — check multiple cards; a sticky tweet bar slides in from the top
 ####   • 🐦 Tweet (two ways):
-####       • Click the Tweet button on any individual card
-####       • Select multiple cards and click Tweet selected in the bar
-####       • A compose modal pre-fills the tweet text (editable, with a live 280-char counter) and opens Twitter Web Intent — no API keys needed  
+#####       • Click the Tweet button on any individual card
+#####       • Select multiple cards and click Tweet selected in the bar
+#####       • A compose modal pre-fills the tweet text (editable, with a live 280-char counter) and opens Twitter Web Intent — no API keys needed  
